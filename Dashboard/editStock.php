@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__.'/../Database/Query.php';
-session_start();
+require_once __DIR__.'/../Dashboard/dashboardSession.php';
+
 $queryOb = new Query();
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -21,8 +22,8 @@ $result = $queryOb->fetchStock($_SESSION['userEmail']);
       </tr>
       <?php foreach ($result as $row) : ?>
         <tr>
-          <td><?php echo $row['Stock_Name']?></td>
-          <td><?php echo $row['Stock_Price']?></td>
+          <td class="name"><?php echo $row['Stock_Name']?></td>
+          <td class="price"><?php echo $row['Stock_Price']?></td>
           <td><?php echo $row['CreatedTime']?></td>
           <td><?php echo $row['UpdatedTime']?></td>
           <td><button class="btn btn-primary edit" data-stock-id="<?php echo $row['Stock_Id'] ?>">Edit</button></td>

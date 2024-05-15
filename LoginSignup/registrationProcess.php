@@ -1,12 +1,11 @@
 <?php
 require_once './Database/Query.php';
-require_once './LoginSignup/Validation.php';
+require_once 'Validation.php';
 
 if (isset($_POST["submit"])) {
 
   $obSignup = new Query();
   $obValid = new Validation();
-  // $userName = $_POST['userName'];
   $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
   $email = $_POST['email'];
   $isExist = $obSignup->Duplicate($email);

@@ -1,7 +1,8 @@
 <?php
 
 require_once './Database/Query.php';
-session_start();
+require_once './Dashboard/dashboardSession.php';
+
 $queryOb = new Query();
 $result = $queryOb->fetchAllStock();
 ?>

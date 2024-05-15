@@ -3,8 +3,12 @@ $(document).ready(function () {
   // It implemnts to open the Modal to edit any stock.
   $(document).on("click",".edit",function() {
     var Id = $(this).data('stock-id');
+    var name = $(this).parent().parent('tr').find('.name').text();
+    var price = $(this).parent().parent('tr').find('.price').text();
     $('#editModal').modal('show');
     $('#editId').val(Id);
+    $('#editName').val(name);
+    $('#editPrice').val(price);
   })
 
   // It implements to edit Stock details.

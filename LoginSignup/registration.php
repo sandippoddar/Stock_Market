@@ -19,7 +19,7 @@ require './LoginSignup/registrationProcess.php';
     <form action="/register" method="post">
       <div class="form-ele">
         <label for="email">Enter Email:</label>
-        <input type="email" name="email" id="email"  placeholder="Email" value = "<?php echo isset($_POST['signup']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : ''; ?>">
+        <input type="text" name="email" id="email"  placeholder="Email" value = "<?php echo isset($_POST['signup']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : ''; ?>">
       </div>
       <div class="form-ele">
         <label for="password">Enter Password:</label>

@@ -10,6 +10,11 @@ require './Dashboard/stockEntryProcess.php';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+<style>
+  .error p{
+    color: #FF0000;
+  }
+</style>
 <body>
   <header>
     <?php include './Dashboard/navbar.php' ?>
@@ -20,11 +25,25 @@ require './Dashboard/stockEntryProcess.php';
       <form action="/enterstock" method="post">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Enter Stock Name: </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+        <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Stock Name">
+      </div>
+      <div class="error">
+      <?php if (isset($_POST['submit']) && count($errorName)) : ?>
+        <?php foreach( $errorName as $error) : ?>
+          <p><?php echo $error; ?></p>
+        <?php endforeach; ?>
+      <?php endif; ?>
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Enter Stock Price: </label>
-        <input type="text" class="form-control" id="exampleInputPassword1" name="price">
+        <input type="text" class="form-control" id="exampleInputPassword1" name="price" placeholder="Stock Price">
+      </div>
+      <div class="error">
+      <?php if (isset($_POST['submit']) && count($errorPrice)) : ?>
+        <?php foreach( $errorPrice as $error) : ?>
+          <p><?php echo $error; ?></p>
+        <?php endforeach; ?>
+      <?php endif; ?>
       </div>
       <button type="submit" class="btn btn-primary" name="submit">Submit</button>
       </form>
@@ -43,8 +62,8 @@ require './Dashboard/stockEntryProcess.php';
         </tr>
         <?php foreach ($result as $row) : ?>
           <tr>
-            <td><?php echo $row['Stock_Name']?></td>
-            <td><?php echo $row['Stock_Price']?></td>
+            <td class="name"><?php echo $row['Stock_Name']?></td>
+            <td class="price"><?php echo $row['Stock_Price']?></td>
             <td><?php echo $row['CreatedTime']?></td>
             <td><?php echo $row['UpdatedTime']?></td>
             <td><button class="btn btn-primary edit" data-stock-id="<?php echo $row['Stock_Id'] ?>">Edit</button></td>

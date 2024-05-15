@@ -119,7 +119,7 @@ class Query extends Connection {
    *  Array contains Stock Details of a the Email User.
    */
   public function fetchStock(string $email) {
-    $sql = $this->conn->prepare("SELECT * FROM stock WHERE Email = :Email");
+    $sql = $this->conn->prepare("SELECT * FROM stock WHERE Email = :Email ORDER BY Stock_Id DESC");
     $sql->execute(array(':Email' => $email));
     $result = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -132,7 +132,7 @@ class Query extends Connection {
    *  Array contains Stock Details of a the Email User.
    */
   public function fetchAllStock() {
-    $sql = $this->conn->prepare("SELECT * FROM stock");
+    $sql = $this->conn->prepare("SELECT * FROM stock ORDER BY Stock_Id DESC");
     $sql->execute();
     $result = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $result;

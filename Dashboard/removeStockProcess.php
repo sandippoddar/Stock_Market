@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__.'/../Database/Query.php';
-session_start();
+require_once __DIR__.'/../Dashboard/dashboardSession.php';
+
 $queryOb = new Query();
 $stockId = $_POST['stockId'];
 $email = $_SESSION['userEmail'];
